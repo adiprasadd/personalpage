@@ -180,7 +180,7 @@ export default function Home() {
                 <FiExternalLink />
               </a>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1"><span className="font-bold">offered $40000 to build full-scale product by knotAPI.</span> personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1"><span className="font-bold">offered $55000 to build full-scale product by knotAPI.</span> personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
           </div>
           <div>
             <div className="flex items-center gap-2">
