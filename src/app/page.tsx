@@ -125,7 +125,7 @@ export default function Home() {
             book a meeting with me
           </a>
           <br /><br />
-          aside from programming, i play soccer and.
+          away from tech, i spend the majority of my time playing soccer or lifting!
         </p>
       </section>
 
@@ -175,12 +175,12 @@ export default function Home() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold">dealydigests</span>
+              <span className="font-bold">dealydigests (1st place finance track & 1st place knot track)</span>
               <a href="https://github.com/pravinl23/DealyDigests?tab=readme-ov-file" target="_blank" rel="noopener noreferrer" className="text-[#ededed99] hover:text-[#ededed]">
                 <FiExternalLink />
               </a>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
+            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1"><span className="font-bold">offered $40000 to build full-scale product by knotAPI.</span> personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -219,6 +219,17 @@ export default function Home() {
           <div><span className="font-semibold text-black dark:text-white">developer tools:</span> visual studio, pycharm, heroku, git, unix, huggingface, colab, autocad, solidworks, fastapi, openai api, rest apis, vercel, langchain, supabase, mongodb</div>
         </div>
       </section>
+
+      {/* Resume Download Button (below skills) */}
+      <div className="w-full flex justify-center mb-12">
+        <a
+          href="/resume.pdf"
+          download
+          className="bg-[#222] text-[#ededed] px-6 py-3 rounded-full shadow-lg border border-[#444] hover:bg-[#333] transition-colors z-50 font-semibold text-base"
+        >
+          download resume
+        </a>
+      </div>
 
       {/* Footer with social links */}
       <footer className="w-full flex justify-center items-center gap-6 py-6 border-t border-neutral-200 dark:border-neutral-800 mt-8">
