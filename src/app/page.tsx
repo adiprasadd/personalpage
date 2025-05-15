@@ -15,8 +15,17 @@ export default function Home() {
 
   const experiences = [
     {
+      key: 'shopify',
+      title: 'software engineering intern @ shopify',
+      date: '(incoming fall 2025, toronto, on)',
+      summary: 'wanted to help build the future of commerce, and make it easier for businesses to grow and scale.',
+      details: [
+        'not sure yet what i will be working on, but stay tuned!'
+      ]
+    },
+    {
       key: 'mosaic',
-      title: 'cto & cofounder, mosaic',
+      title: 'cto & cofounder @ mosaic',
       date: '(apr 2025 – present, san francisco, ca)',
       summary: 'mosaic is a competitive intelligence platform that uses real-time linkedin data to uncover strategic insights about companies—tracking hiring trends, talent movement, and organizational shifts to help businesses stay ahead of their competitors.',
       details: [
@@ -27,7 +36,7 @@ export default function Home() {
     },
     {
       key: 'preamble',
-      title: 'ai engineering intern, preamble ai',
+      title: 'ai engineering intern @ preamble ai',
       date: '(aug 2024 – present, pittsburgh, pa)',
       summary: 'developing enterprise ai integration prototypes, contributing to ai safety research, and improving technical documentation and platform stability.',
       details: [
@@ -38,7 +47,7 @@ export default function Home() {
     },
     {
       key: 'watolink',
-      title: 'machine learning engineer, watolink',
+      title: 'machine learning engineer @ watolink',
       date: '(jan 2025 – present, waterloo, on)',
       summary: 'researching neural networks and brain-computer interfaces, focusing on real-time eeg transcription for assistive tech like mind-controlled wheelchairs and drones.',
       details: [
@@ -49,7 +58,7 @@ export default function Home() {
     },
     {
       key: 'codeninjas',
-      title: 'robotics instructor, code ninjas',
+      title: 'robotics instructor @ code ninjas',
       date: '(sep 2022 – aug 2024, brampton, on)',
       summary: 'designed and taught robotics curriculum, supported student learning, and helped grow client engagement and retention.',
       details: [
