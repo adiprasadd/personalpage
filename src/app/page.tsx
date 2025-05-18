@@ -18,7 +18,7 @@ export default function Home() {
       key: 'shopify',
       title: 'software engineering intern @ shopify',
       date: '(incoming fall 2025, toronto, on)',
-      summary: 'wanted to help build the future of commerce, and make it easier for businesses to grow and scale.',
+      summary: 'building the future of e-commerce, and making it easier for businesses to scale.',
       details: [
         'not sure yet what i will be working on, but stay tuned!'
       ]
@@ -31,18 +31,8 @@ export default function Home() {
       details: [
         'leading product and technical direction as cto and cofounder.',
         'building tools for real-time analysis of linkedin data.',
-        'enabling businesses to track hiring, talent movement, and org changes.'
-      ]
-    },
-    {
-      key: 'preamble',
-      title: 'ai engineering intern @ preamble ai',
-      date: '(aug 2024 – present, pittsburgh, pa)',
-      summary: 'developing enterprise ai integration prototypes, contributing to ai safety research, and improving technical documentation and platform stability.',
-      details: [
-        'built enterprise ai integration prototypes to streamline workflows.',
-        'researched ai safety trends and developed proof-of-concept use cases.',
-        'improved platform stability and documentation for better user experience.'
+        'enabling businesses to track hiring, talent movement, and org changes.',
+        'join our waitlist at: usemosaic.vercel.app'
       ]
     },
     {
@@ -54,6 +44,17 @@ export default function Home() {
         'analyzed scientific publications on neural networks and bcis.',
         'evaluated advanced eeg decoding models for brain signal interpretation.',
         'implementing research for real-time transcription and assistive applications.'
+      ]
+    },
+    {
+      key: 'preamble',
+      title: 'ai engineering intern @ preamble ai',
+      date: '(aug 2024 – present, pittsburgh, pa)',
+      summary: 'developing enterprise ai integration prototypes, contributing to ai safety research, and improving technical documentation and platform stability.',
+      details: [
+        'built enterprise ai integration prototypes to streamline workflows.',
+        'researched ai safety trends and developed proof-of-concept use cases.',
+        'improved platform stability and documentation for better user experience.'
       ]
     },
     {
@@ -101,9 +102,14 @@ export default function Home() {
             </h1>
           </div>
           <div className="ml-auto">
-            <div className="w-20 h-20 rounded-full bg-[#ededed22] flex items-center justify-center border-2 border-[#ededed33]">
-              {/* Profile image placeholder */}
-              <span className="text-[#ededed55] text-3xl">●</span>
+            <div className="w-20 h-20 rounded-full bg-[#ededed22] flex items-center justify-center border-2 border-[#ededed33] overflow-hidden">
+              <Image 
+                src="/headshot.jpg" 
+                alt="adi prasad" 
+                width={80} 
+                height={80} 
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
