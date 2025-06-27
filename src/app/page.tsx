@@ -84,31 +84,31 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] flex flex-col items-center px-4 py-12 font-sans">
       {/* Hero Section */}
       <section className="w-full max-w-2xl flex flex-col items-center sm:items-start mb-12">
-        <div className="flex items-center gap-4 w-full">
-          <div className="flex w-full flex-col items-start gap-2">
-            <h1 className="text-5xl font-bold mb-2 flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full">
+          <div className="flex w-full flex-col items-center sm:items-start gap-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 flex flex-wrap items-center justify-center sm:justify-start gap-2">
               hi, i'm
               <button
                 onClick={() => setDisplayName(fullName)}
-                className="inline-block align-middle transition-all duration-300 text-[#ededed] bg-transparent border-none p-0 m-0 cursor-pointer hover:underline focus:outline-none"
+                className="transition-all duration-300 text-[#ededed] bg-transparent border-none p-0 m-0 cursor-pointer hover:underline focus:outline-none font-bold"
                 aria-label="Replay name animation"
                 type="button"
-                style={{ font: 'inherit', lineHeight: 1 }}
+                style={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}
               >
                 {displayName}
               </button>
               prasad
-              <span className="inline-block align-middle ml-2">👋</span>
+              <span className="ml-2">👋</span>
             </h1>
           </div>
-          <div className="ml-auto">
-            <div className="w-20 h-20 rounded-full bg-[#ededed22] flex items-center justify-center border-2 border-[#ededed33] overflow-hidden">
+          <div className="sm:ml-auto">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#ededed22] flex items-center justify-center border-2 border-[#ededed33] overflow-hidden">
               <Image 
                 src="/headshot.jpg" 
                 alt="adi prasad" 
                 width={80} 
                 height={80} 
-                className="object-cover"
+                className="object-cover w-full h-full"
               />
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function Home() {
       <section className="w-full max-w-2xl mb-12">
         <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">about</h2>
         <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-          currently building mosaic. i'm interested in all things relating to machine learning, robotics, and biotechnology. i love building, and talking so feel free to email me at: <span className="font-bold">aditya.prasad@uwaterloo.ca</span> or{' '}
+          currently building mosaic. i'm interested in all things relating to machine intelligence, agentic systems, and robotics. i love building, and talking so feel free to email me at: <span className="font-bold">aditya.prasad@uwaterloo.ca</span> or{' '}
           <a
             href="https://cal.com/adiprasadd"
             target="_blank"
