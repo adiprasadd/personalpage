@@ -235,14 +235,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Resume Download Button (below skills) */}
+      {/* Resume View Button (below skills) */}
       <div className="w-full flex justify-center mb-12">
         <a
           href="/resume.pdf"
-          download
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-[#222] text-[#ededed] px-6 py-3 rounded-full shadow-lg border border-[#444] hover:bg-[#333] transition-colors z-50 font-semibold text-base"
         >
-          download resume
+          view resume
         </a>
       </div>
 
