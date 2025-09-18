@@ -81,7 +81,7 @@ export default function Home() {
   }, [displayName]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] flex flex-col items-center px-4 py-12 font-sans">
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-12 font-sans">
       {/* Hero Section */}
       <section className="w-full max-w-2xl flex flex-col items-center sm:items-start mb-12">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full">
@@ -90,7 +90,7 @@ export default function Home() {
               hi, i'm
               <button
                 onClick={() => setDisplayName(fullName)}
-                className="transition-all duration-300 text-[#ededed] bg-transparent border-none p-0 m-0 cursor-pointer hover:underline focus:outline-none font-bold"
+                className="transition-all duration-300 text-foreground bg-transparent border-none p-0 m-0 cursor-pointer hover:underline focus:outline-none font-bold"
                 aria-label="Replay name animation"
                 type="button"
                 style={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}
@@ -102,7 +102,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="sm:ml-auto">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#ededed22] flex items-center justify-center border-2 border-[#ededed33] overflow-hidden">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent flex items-center justify-center border-2 border-border overflow-hidden">
               <Image 
                 src="/headshot.jpg" 
                 alt="adi prasad" 
@@ -113,12 +113,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <p className="text-lg mt-2 text-[#bdbdbd]">
+        <p className="text-lg mt-2 text-muted">
           <a
             href="https://se-webring.xyz/"
             target="_blank"
             rel="noopener noreferrer"
-            className="no-underline hover:underline hover:text-white transition-colors"
+            className="no-underline hover:underline hover:text-foreground transition-colors"
           >
             software engineering
           </a>
@@ -128,8 +128,8 @@ export default function Home() {
 
       {/* About Section */}
       <section className="w-full max-w-2xl mb-12">
-        <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">about</h2>
-        <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">about</h2>
+        <p className="text-muted-foreground leading-relaxed">
           currently building mosaic. i'm interested in all things relating to machine intelligence, agentic systems, and robotics. i love building, and talking so feel free to email me at: <span className="font-bold">aditya.prasad@uwaterloo.ca</span> or{' '}
           <a
             href="https://cal.com/adiprasadd"
@@ -146,23 +146,23 @@ export default function Home() {
 
       {/* Experience Section */}
       <section className="w-full max-w-2xl mb-12">
-        <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">experience</h2>
-        <div className="text-neutral-700 dark:text-neutral-200 leading-relaxed text-base flex flex-col gap-6">
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">experience</h2>
+        <div className="text-muted-foreground leading-relaxed text-base flex flex-col gap-6">
           {experiences.map(exp => (
             <div key={exp.key}>
               <button
-                className="w-full text-left font-semibold text-[#ededed] flex items-center justify-between focus:outline-none hover:text-white transition-colors"
+                className="w-full text-left font-semibold text-foreground flex items-center justify-between focus:outline-none hover:text-foreground transition-colors"
                 onClick={() => setOpenExp(openExp === exp.key ? null : exp.key)}
                 aria-expanded={openExp === exp.key}
                 aria-controls={`exp-details-${exp.key}`}
               >
-                <div className="font-semibold text-black dark:text-white">{exp.title} <span className="text-xs text-neutral-500 dark:text-neutral-400">{exp.date}</span></div>
+                <div className="font-semibold text-foreground">{exp.title} <span className="text-xs text-muted">{exp.date}</span></div>
                 <span className={`ml-2 transition-transform ${openExp === exp.key ? 'rotate-90' : ''}`}>▶</span>
               </button>
               <div className="pl-4 mt-1">
                 <div>{exp.summary}</div>
                 {openExp === exp.key && (
-                  <ul id={`exp-details-${exp.key}`} className="mt-2 list-disc list-inside text-sm text-[#bdbdbd]">
+                  <ul id={`exp-details-${exp.key}`} className="mt-2 list-disc list-inside text-sm text-muted">
                     {exp.details.map((d, i) => (
                       <li key={i}>{d}</li>
                     ))}
@@ -176,62 +176,62 @@ export default function Home() {
 
       {/* Projects Section */}
       <section className="w-full max-w-2xl mb-12">
-        <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">projects</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-foreground">projects</h2>
         <div className="flex flex-col gap-4">
-          <h3 className="text-xl font-semibold text-black dark:text-white mt-2 mb-1">2025</h3>
+          <h3 className="text-xl font-semibold text-foreground mt-2 mb-1">2025</h3>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">embereye</span>
-              <a href="https://github.com/AumkarMali/EmberEye" target="_blank" rel="noopener noreferrer" className="text-[#ededed99] hover:text-[#ededed]">
+              <a href="https://github.com/AumkarMali/EmberEye" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                 <FiExternalLink />
               </a>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">ai-powered platform for wildfire monitoring and prediction, integrating satellite and weather data to forecast fire spread and climate impact. built with react, tailwind, flask, and mongodb. inspired by google's firesat initiative. <a href="https://ember-eye.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-black dark:hover:text-white">live demo</a></p>
+            <p className="text-muted-foreground text-sm ml-1">ai-powered platform for wildfire monitoring and prediction, integrating satellite and weather data to forecast fire spread and climate impact. built with react, tailwind, flask, and mongodb. inspired by google's firesat initiative. <a href="https://ember-eye.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">live demo</a></p>
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">dealydigests (1st place finance track & 1st place knot track)</span>
-              <a href="https://github.com/pravinl23/DealyDigests?tab=readme-ov-file" target="_blank" rel="noopener noreferrer" className="text-[#ededed99] hover:text-[#ededed]">
+              <a href="https://github.com/pravinl23/DealyDigests?tab=readme-ov-file" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                 <FiExternalLink />
               </a>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1"><span className="font-bold">offered $55000 to build full-scale product by knotAPI.</span> personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
+            <p className="text-muted-foreground text-sm ml-1"><span className="font-bold">offered $55000 to build full-scale product by knotAPI.</span> personal finance web app that recommends the best credit card for purchases based on location and merchant data. built with next.js, react, tailwind, and mongodb. features google maps integration and real-time api usage.</p>
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">feedforward neural network</span>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">implemented a neural network in c++ to solve the xor problem, achieving high accuracy with custom training logic.</p>
+            <p className="text-muted-foreground text-sm ml-1">implemented a neural network in c++ to solve the xor problem, achieving high accuracy with custom training logic.</p>
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">forg3d (tartanhacks 2025, 3rd place)</span>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">a decentralized 3d model marketplace with interactive rendering and secure metadata management, recognized at carnegie mellon's largest hackathon.</p>
+            <p className="text-muted-foreground text-sm ml-1">a decentralized 3d model marketplace with interactive rendering and secure metadata management, recognized at carnegie mellon's largest hackathon.</p>
           </div>
-          <h3 className="text-xl font-semibold text-black dark:text-white mt-6 mb-1">2024</h3>
+          <h3 className="text-xl font-semibold text-foreground mt-6 mb-1">2024</h3>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">behaviewer (newhacks 2024)</span>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">full-stack analytics platform for customer retention, leveraging predictive models and scalable data pipelines.</p>
+            <p className="text-muted-foreground text-sm ml-1">full-stack analytics platform for customer retention, leveraging predictive models and scalable data pipelines.</p>
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold">robotic exoskeleton arm</span>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-300 text-sm ml-1">designed and programmed a robotic hand for precise object manipulation and asl sign demonstration.</p>
+            <p className="text-muted-foreground text-sm ml-1">designed and programmed a robotic hand for precise object manipulation and asl sign demonstration.</p>
           </div>
         </div>
       </section>
 
       {/* Skills Section (moved to bottom) */}
       <section className="w-full max-w-2xl mb-12">
-        <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">skills</h2>
-        <div className="text-neutral-700 dark:text-neutral-200 leading-relaxed text-base">
-          <div className="mb-2"><span className="font-semibold text-black dark:text-white">languages:</span> python, c/c++, html/css, javascript, java, typescript, vhdl</div>
-          <div className="mb-2"><span className="font-semibold text-black dark:text-white">frameworks & libraries:</span> react, next.js, three.js, pytorch, tailwind, opencv, scikit-learn, pandas, numpy, keras, yolo</div>
-          <div><span className="font-semibold text-black dark:text-white">developer tools:</span> visual studio, pycharm, heroku, git, unix, huggingface, colab, autocad, solidworks, fastapi, openai api, rest apis, vercel, langchain, supabase, mongodb</div>
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">skills</h2>
+        <div className="text-muted-foreground leading-relaxed text-base">
+          <div className="mb-2"><span className="font-semibold text-foreground">languages:</span> python, c/c++, html/css, javascript, java, typescript, vhdl</div>
+          <div className="mb-2"><span className="font-semibold text-foreground">frameworks & libraries:</span> react, next.js, three.js, pytorch, tailwind, opencv, scikit-learn, pandas, numpy, keras, yolo</div>
+          <div><span className="font-semibold text-foreground">developer tools:</span> visual studio, pycharm, heroku, git, unix, huggingface, colab, autocad, solidworks, fastapi, openai api, rest apis, vercel, langchain, supabase, mongodb</div>
         </div>
       </section>
 
@@ -241,14 +241,14 @@ export default function Home() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#222] text-[#ededed] px-6 py-3 rounded-full shadow-lg border border-[#444] hover:bg-[#333] transition-colors z-50 font-semibold text-base"
+          className="bg-accent text-accent-foreground px-6 py-3 rounded-full shadow-lg border border-border hover:bg-muted transition-colors z-50 font-semibold text-base"
         >
           view resume
         </a>
       </div>
 
       {/* Footer with social links */}
-      <footer className="w-full flex justify-center items-center gap-6 py-6 border-t border-neutral-200 dark:border-neutral-800 mt-8">
+      <footer className="w-full flex justify-center items-center gap-6 py-6 border-t border-border mt-8">
         <a href="https://github.com/adiprasadd" target="_blank" rel="noopener noreferrer" aria-label="github">
           <FaGithub size={28} />
         </a>
