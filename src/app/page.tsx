@@ -55,7 +55,7 @@ export default function Home() {
       date: '2025',
       role: 'Machine Learning Engineer',
       location: 'Waterloo, Ontario, Canada',
-      bullet: 'Researching neural networks and brain-computer interfaces for real-time EEG transcription'
+      bullet: 'building real-time EEG transcription systems for brain-computer interfaces'
     },
     {
       key: 'preamble',
