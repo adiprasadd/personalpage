@@ -136,14 +136,14 @@ export default function Home() {
       title: 'hosted an a16z speedrun dinner',
       url: 'https://x.com/adiprasadd/status/1971808424640864755',
       date: '2025',
-      bullet: 'hosted an a16z speedrun dinner'
+      bullet: 'showed the largest vc firm the talent density in waterloo'
     },
     {
       key: 'admissions',
       title: 'opinions on canadian vs. american university admissions',
       url: 'https://x.com/adiprasadd/status/1970255440652181761',
       date: '2025',
-      bullet: 'opinions on canadian vs. american university admissions'
+      bullet: 'was thinking about undergrad apps and came to a general realization i wanted to share'
     }
   ];
 
