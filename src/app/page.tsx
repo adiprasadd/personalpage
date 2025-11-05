@@ -46,7 +46,7 @@ export default function Home() {
       date: '2025',
       role: 'Software Engineering Intern',
       location: 'San Francisco, California, USA',
-      bullet: 'Incubated to build a market intelligence data layer powering competitive insights for startups'
+      bullet: 'incubated to build a market intelligence data layer powering competitive insights for startups'
     },
     {
       key: 'watolink',
@@ -64,7 +64,7 @@ export default function Home() {
       date: '2024',
       role: 'AI Engineering Intern',
       location: 'Pittsburgh, Pennsylvania, USA',
-      bullet: 'Developing enterprise AI integration prototypes and AI safety research'
+      bullet: 'developing enterprise AI integration prototypes and AI safety research'
     }
   ];
 
