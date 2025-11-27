@@ -218,7 +218,7 @@ graph TB
           </p>
 
           <h2 className="text-2xl sm:text-3xl mt-8 mb-4 font-serif" style={{fontWeight: 500}}>
-            Implementing
+            Issues faced
           </h2>
 
           <p>
