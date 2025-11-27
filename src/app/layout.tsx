@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "adi prasad",
+  title: "building with mgrep",
   description: "well this is my personal website i guess",
   icons: {
     icon: [
