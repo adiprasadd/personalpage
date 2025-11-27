@@ -29,6 +29,9 @@ export default function Mgrep() {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    // Set page title
+    document.title = 'building with mgrep';
+    
     const renderMermaid = async () => {
       if (mermaidRef.current) {
         mermaid.initialize({ 
