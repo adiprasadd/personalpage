@@ -15,6 +15,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "adi prasad",
   description: "well this is my personal website i guess",
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon.png', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
