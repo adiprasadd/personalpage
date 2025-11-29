@@ -132,6 +132,13 @@ export default function Home() {
     bullet?: string;
   }> = [
     {
+      key: 'mgrep',
+      title: 'building with mgrep',
+      url: '/mgrep',
+      date: '2025',
+      bullet: 'thoughts integrating mixedbread ai semantic code search tool into agentic workflows'
+    },
+    {
       key: 'a16z-dinner',
       title: 'hosted an a16z speedrun dinner',
       url: 'https://x.com/adiprasadd/status/1971808424640864755',
