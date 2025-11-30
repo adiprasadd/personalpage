@@ -46,20 +46,20 @@ graph TB
         A[Agent Workflow] -->|Natural Language Query| B[mgrep CLI]
         B -->|File Watching| C[Filesystem Monitor]
         C -->|Detect Changes| D[File Chunker]
-        D -->|512-1024 token segments| E[Chunk Processor]
+        D -->|Overlapping segments| E[Chunk Processor]
     end
     
-    subgraph "Cloud Service"
+    subgraph "Cloud Service - Mixedbread"
         E -->|HTTP/API Upload| F[Mixedbread API]
-        F -->|Embedding Model| G[Vector Encoder]
-        G -->|768/1536 dim vectors| H[Vector Database]
-        H -->|HNSW/IVF Index| I[Similarity Search]
+        F -->|Embedding Model| G[Multivector Encoder]
+        G -->|Multiple vectors per chunk| H[In-House Vector DB]
+        H -->|Custom Index| I[Similarity Search]
     end
     
     subgraph "Query Flow"
         B -->|Query String| F
         F -->|Embed Query| G
-        G -->|Query Vector| I
+        G -->|Query Vectors| I
         I -->|Top-K Results| J[Ranked Matches]
         J -->|File Path + Lines| B
         B -->|Context| A
@@ -156,11 +156,15 @@ graph TB
           </p>
 
           <p>
-            During indexing, the <code className="bg-gray-800 text-gray-100 px-1.5 py-0.5 rounded font-mono text-sm">mgrep watch</code> command monitors the filesystem for changes, chunks files into overlapping segments (typically 512-1024 tokens), and uploads these chunks to the cloud. Each chunk is embedded using a transformer model (likely a code-optimized embedding model like CodeBERT or similar) into a dense vector representation, typically 768 or 1536 dimensions. These vectors are stored in a managed vector database with inverted file indexes for fast approximate nearest neighbor search.
+            During indexing, the <code className="bg-gray-800 text-gray-100 px-1.5 py-0.5 rounded font-mono text-sm">mgrep watch</code> command monitors the filesystem for changes, chunks files into overlapping segments, and uploads these chunks to the cloud. Unlike traditional single-vector embeddings, mgrep uses <strong>multivector retrieval</strong>—each chunk is represented by multiple vectors rather than a single dense embedding. This approach captures different semantic aspects of the same code segment, improving retrieval quality for complex queries. The exact vector dimensions are not publicly documented.
           </p>
 
           <p>
-            At query time, the natural language query is embedded using the same model, producing a query vector. This vector is compared against all indexed chunks using cosine similarity or dot product. The system performs approximate nearest neighbor search (likely using HNSW or IVF indices) to retrieve the top-k most similar chunks, ranked by similarity score. Results include the source file path, line numbers, and surrounding context.
+            A key differentiator for Mixedbread is that they <strong>built their own vector database and indexing system entirely in-house</strong>. Rather than relying on off-the-shelf solutions like Pinecone, Weaviate, or even open-source options like Milvus, they developed their own vector DB from the ground up. This gives them full control over the retrieval stack—from how vectors are stored and indexed to how similarity search is executed—allowing them to optimize specifically for code search workloads.
+          </p>
+
+          <p>
+            At query time, the natural language query is embedded using the same multivector approach, producing multiple query vectors. These are compared against all indexed chunks using their optimized similarity search. The system retrieves the top-k most similar chunks, ranked by aggregate similarity score across the vector set. Results include the source file path, line numbers, and surrounding context.
           </p>
 
           <p>
