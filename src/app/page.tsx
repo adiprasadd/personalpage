@@ -22,6 +22,15 @@ export default function Home() {
 
   const experiences = [
     {
+      key: 'andera',
+      company: 'Andera',
+      url: 'https://www.andera.ai',
+      date: '2026',
+      role: 'Research Engineering Intern',
+      location: 'San Francisco, California, USA',
+      bullet: 'building the best agents for SOX testing, compliance, and audit'
+    },
+    {
       key: 'shopify',
       company: 'Shopify',
       url: 'https://www.shopify.com/ca',
