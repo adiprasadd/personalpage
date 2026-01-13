@@ -28,7 +28,7 @@ export default function Home() {
       date: '2026',
       role: 'Research Engineering Intern',
       location: 'San Francisco, California, USA',
-      bullet: 'building the best agents for SOX testing, compliance, and audit'
+      bullet: 'building agents for SOX testing, compliance, and audit'
     },
     {
       key: 'shopify',
