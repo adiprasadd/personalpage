@@ -1,10 +1,32 @@
 @import "tailwindcss";
 
+/* Roobert Font Face (used by mgrep page) */
+@font-face {
+  font-family: 'Roobert';
+  src: url('/fonts/Roobert-Regular.woff2') format('woff2'),
+       url('/fonts/Roobert-Regular.woff') format('woff'),
+       url('/fonts/Roobert-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('/fonts/Roobert-Medium.woff2') format('woff2'),
+       url('/fonts/Roobert-Medium.woff') format('woff'),
+       url('/fonts/Roobert-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
   --muted: #666666;
   --link: #0066cc;
+  --font-roobert: 'Roobert';
 }
 
 @theme inline {
