@@ -204,6 +204,7 @@ for chunk in retrieved_chunks:
             learning curve itself is exciting. The next few months feel less like execution and more
             like exploration, and that’s something I’m genuinely looking forward to.
           </p>
+          <p>On a side note, first time using Wispr Flow, wrote this in like 10 mins + 15 mins for code snippets pretty sick. Please reach out for any feedback or suggestions always looking to learn more!</p>
         </div>
       </article>
     </div>
