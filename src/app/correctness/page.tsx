@@ -67,11 +67,21 @@ export default function Correctness() {
             clearer. Final outputs tell you what failed. Traces tell you why.
           </p>
           <p>
-            Another thing that mattered more than I expected was the harness. The tools you give an
-            agent effectively cap what it’s capable of doing. A good harness doesn’t just help the
-            model succeed, it removes entire classes of failure. In hindsight, the best agents don’t
-            reason more. They reason less. The more structure you push into the system around the
-            model, the less judgment the model actually needs to exercise.
+            Another thing that mattered more than I expected was the harness. By harness, I mean the
+            fixed scaffolding around the model: the schema it must emit, the validation rules, and
+            the deterministic steps that come after. The tools you give an agent effectively cap what
+            it’s capable of doing, but more importantly, they cap what it can get wrong. A good
+            harness doesn’t just help the model succeed, it removes entire classes of failure. In
+            hindsight, the best agents don’t reason more. They reason less. The more structure you
+            push into the system around the model, the less judgment the model actually needs to
+            exercise.
+          </p>
+          <p>
+            Without that structure, the model breaks in ways that are hard to spot until it is too
+            late: it merges two controls, drops a citation, rewrites a section with confident
+            filler, or misorders rows so downstream checks pass even though the content is wrong.
+            Traces make those failure points obvious. They are boring, but they are the most direct
+            way I have found to improve an agent.
           </p>
           <p>
             This becomes especially important with large-scale document processing. Wherever
