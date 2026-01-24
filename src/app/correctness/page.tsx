@@ -44,7 +44,7 @@ export default function Correctness() {
             used to, dealing with documents that run into the tens of thousands of tokens and all
             encode the same underlying information in slightly different forms.
           </p>
-          <p>This was significantly harder than I expected.</p>
+          <p>This was much harder than I expected.</p>
           <p>
             At that scale, you can’t just feed everything into a model and hope it works. Chunking
             and retrieval become unavoidable, but the bigger issue is precision. The work demanded
@@ -56,29 +56,27 @@ export default function Correctness() {
           <p>
             Prompt refinement only gets you so far. Tiny wording changes introduce real variance,
             and that variance becomes a liability when correctness actually matters. Leaving core
-            logic up to model entropy didn’t sit right with me, so I ended up moving toward systems
-            that are as deterministic as possible while still preserving the simplicity of letting a
-            model automate the task end to end.
+            logic up to model entropy didn’t sit right with me, so I moved toward systems that are
+            as deterministic as possible while still letting the model run end to end.
           </p>
           <p>
             One thing that took me a while to learn is that observability is non-negotiable. I don’t
-            enjoy reading long traces, but once you can actually see how an agent is stepping through
-            a task, where it hesitates, and where it goes off the rails, the problem becomes much
-            clearer. Final outputs tell you what failed. Traces tell you why.
+            enjoy reading long traces, but once you can see how an agent is stepping through a task,
+            where it hesitates, and where it goes off the rails, the problem gets clearer. Final
+            outputs tell you what failed. Traces tell you why.
           </p>
           <p>
             Another thing that mattered more than I expected was the harness. By harness, I mean the
             fixed scaffolding around the model: the schema it must emit, the validation rules, and
-            the deterministic steps that come after. The tools you give an agent effectively cap what
-            it’s capable of doing, but more importantly, they cap what it can get wrong. A good
-            harness doesn’t just help the model succeed, it removes entire classes of failure. In
-            hindsight, the best agents don’t reason more. They reason less. The more structure you
-            push into the system around the model, the less judgment the model actually needs to
-            exercise.
+            the deterministic steps that come after. The tools you give an agent cap what it can do,
+            and more importantly, what it can get wrong. A good harness doesn’t just help the model
+            succeed, it removes entire classes of failure. In hindsight, the best agents don’t
+            reason more. They reason less. The more structure you push into the system around the
+            model, the less judgment the model actually needs to exercise.
           </p>
           <p>
             Without that structure, the model breaks in ways that are hard to spot until it is too
-            late: it merges two controls, drops a citation, rewrites a section with confident
+            late: it merges two sections, drops a citation, rewrites a section with confident
             filler, or misorders rows so downstream checks pass even though the content is wrong.
             Traces make those failure points obvious. They are boring, but they are the most direct
             way I have found to improve an agent.
@@ -88,15 +86,19 @@ export default function Correctness() {
             possible, you want determinism. If information can be extracted once and stored in a
             concrete structure, the model shouldn’t have to reason about it again. At that point
             it’s just emitting data that regular code could print as well. Long-context models don’t
-            really solve this problem. They mostly just delay it. Attention still gets diluted and
-            entropy still leaks in.
+            really solve this problem. They mostly just delay it.
           </p>
           <p>
             What finally started to work for me was treating the model as a narrow extractor and
             pushing structure into the surrounding system. The goal wasn’t to get a clever answer,
             it was to get the same answer every time. So I made the model emit a deterministic
             intermediate map and forced all later steps to consume that map instead of freeform text.
-            That shift sounds small, but it changed everything downstream.
+          </p>
+          <p>
+            A simple case study: take a 200-page product handbook and turn it into a structured
+            internal wiki. Each section needs a heading, a short summary, a few bullet points, and
+            citations back to the source pages. The model only extracts those fields; everything
+            else is fixed and deterministic.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -104,15 +106,15 @@ export default function Correctness() {
               style={customCodeStyle}
               customStyle={{ borderRadius: '0.5rem', fontSize: '0.95rem', padding: '1rem' }}
             >
-{`# control_id -> sub_objective -> record
-control_map = {}
+{`# doc_id -> section -> record
+doc_map = {}
 
 # record shape (informal)
 # {
-#   objective: str
-#   activity: str
-#   tests: [str]
-#   exceptions: [str]
+#   heading: str
+#   summary: str
+#   bullets: [str]
+#   tags: [str]
 #   citations: [...]
 # }
 
@@ -120,11 +122,11 @@ for chunk in retrieved_chunks:
     extracted_items = model.extract_structured(chunk.text)
 
     for item in extracted_items:
-        control_map[item.control_id][item.sub_objective] = {
-            "objective": item.objective,
-            "activity": item.activity,
-            "tests": item.tests,
-            "exceptions": item.exceptions,
+        doc_map[item.doc_id][item.section] = {
+            "heading": item.heading,
+            "summary": item.summary,
+            "bullets": item.bullets,
+            "tags": item.tags,
             "citations": item.citations
         }
 `}
@@ -134,9 +136,9 @@ for chunk in retrieved_chunks:
           <p>
             Once I had a stable structure, the next step was to be ruthless about correctness. This
             is where I stopped trusting the final output and started verifying the intermediate
-            record itself. The checks are intentionally boring: duplicates, missing activity,
-            missing citations, and obvious OCR noise. But the boredom is the point. This is the part
-            of the pipeline that should never surprise you.
+            record itself. The checks are intentionally boring: duplicates, missing summary, missing
+            citations, and obvious OCR noise. The boredom is the point. This is the part of the
+            pipeline that should never surprise you.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -144,24 +146,24 @@ for chunk in retrieved_chunks:
               style={customCodeStyle}
               customStyle={{ borderRadius: '0.5rem', fontSize: '0.95rem', padding: '1rem' }}
             >
-{`def verify(control_map):
+{`def verify(doc_map):
     seen = set()
 
-    for control_id, subs in control_map.items():
-        for sub_obj, rec in subs.items():
+    for doc_id, sections in doc_map.items():
+        for section, rec in sections.items():
 
-            key = (control_id, sub_obj)
+            key = (doc_id, section)
             if key in seen:
-                error("duplicate control")
+                error("duplicate section")
             seen.add(key)
 
-            if rec.activity is empty:
-                error("missing activity")
+            if rec.summary is empty:
+                error("missing summary")
 
             if rec.citations is empty:
                 error("missing provenance")
 
-            if looks_like_ocr_garbage(rec.activity):
+            if looks_like_ocr_garbage(rec.summary):
                 error("bad extraction")`}
             </SyntaxHighlighter>
           </div>
@@ -170,9 +172,9 @@ for chunk in retrieved_chunks:
           </p>
           <p>
             After that, rendering becomes a mechanical translation step. No judgments, no recovery,
-            no retries. It just walks the map in a fixed order and prints rows. That’s the whole
-            point: the model does the narrow extraction once, the verifier locks it down, and the
-            renderer stays intentionally boring so it never becomes a source of new errors.
+            no retries. It just walks the map in a fixed order and prints rows. That’s the point:
+            the model does the narrow extraction once, the verifier locks it down, and the renderer
+            stays intentionally boring so it never becomes a source of new errors.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -180,20 +182,20 @@ for chunk in retrieved_chunks:
               style={customCodeStyle}
               customStyle={{ borderRadius: '0.5rem', fontSize: '0.95rem', padding: '1rem' }}
             >
-{`def render_rows(control_map):
+{`def render_rows(doc_map):
     rows = []
 
-    for control_id in sorted(control_map):
-        for sub_obj in sorted(control_map[control_id]):
-            rec = control_map[control_id][sub_obj]
+    for doc_id in sorted(doc_map):
+        for section in sorted(doc_map[doc_id]):
+            rec = doc_map[doc_id][section]
 
             rows.append([
-                control_id,
-                sub_obj,
-                rec.objective,
-                rec.activity,
-                join_lines(rec.tests),
-                join_lines(rec.exceptions),
+                doc_id,
+                section,
+                rec.heading,
+                rec.summary,
+                join_lines(rec.bullets),
+                join_lines(rec.tags),
                 format_citations(rec.citations)
             ])
 
@@ -214,7 +216,11 @@ for chunk in retrieved_chunks:
             learning curve itself is exciting. The next few months feel less like execution and more
             like exploration, and that’s something I’m genuinely looking forward to.
           </p>
-          <p>On a side note, first time using Wispr Flow, wrote this in like 10 mins + 15 mins for code snippets pretty sick. Please reach out for any feedback or suggestions always looking to learn more!</p>
+          <p>
+            On a side note, first time using Wispr Flow, wrote this in like 10 mins + 15 mins for
+            code snippets. Pretty sick. Please reach out for any feedback or suggestions, always
+            looking to learn more.
+          </p>
         </div>
       </article>
     </div>
