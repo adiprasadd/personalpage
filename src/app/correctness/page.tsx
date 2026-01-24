@@ -102,6 +102,10 @@ export default function Correctness() {
             it was to get the same answer every time. So I made the model emit a deterministic
             intermediate map and forced all later steps to consume that map instead of freeform text.
           </p>
+          <p>
+            Concretely, that intermediate structure was written to a file inside the container the
+            agent was running in, so every step read from the same persisted source of truth.
+          </p>
           <div className="my-6">
             <SyntaxHighlighter
               language="python"
