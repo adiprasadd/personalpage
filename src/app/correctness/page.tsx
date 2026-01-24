@@ -53,6 +53,14 @@ export default function Correctness() {
             model confidently filling in gaps it shouldn’t. Once that starts happening, small errors
             compound quickly.
           </p>
+          <div className="my-6 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+            <p>
+              A simple case study: take a 200-page product handbook and turn it into a structured
+              internal wiki. Each section needs a heading, a short summary, a few bullet points, and
+              citations back to the source pages. The model only extracts those fields; everything
+              else is fixed and deterministic.
+            </p>
+          </div>
           <p>
             Prompt refinement only gets you so far. Tiny wording changes introduce real variance,
             and that variance becomes a liability when correctness actually matters. Leaving core
@@ -93,12 +101,6 @@ export default function Correctness() {
             pushing structure into the surrounding system. The goal wasn’t to get a clever answer,
             it was to get the same answer every time. So I made the model emit a deterministic
             intermediate map and forced all later steps to consume that map instead of freeform text.
-          </p>
-          <p>
-            A simple case study: take a 200-page product handbook and turn it into a structured
-            internal wiki. Each section needs a heading, a short summary, a few bullet points, and
-            citations back to the source pages. The model only extracts those fields; everything
-            else is fixed and deterministic.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -216,7 +218,7 @@ for chunk in retrieved_chunks:
             learning curve itself is exciting. The next few months feel less like execution and more
             like exploration, and that’s something I’m genuinely looking forward to.
           </p>
-          <p>
+          <p className="text-gray-500">
             On a side note, first time using Wispr Flow, wrote this in like 10 mins + 15 mins for
             code snippets. Pretty sick. Please reach out for any feedback or suggestions, always
             looking to learn more.
