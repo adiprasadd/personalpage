@@ -47,8 +47,7 @@ export default function Correctness() {
           <p>This was much harder than I expected.</p>
           <p>
             At that scale, you can’t just feed everything into a model and hope it works. Chunking
-            and retrieval become unavoidable, but the bigger issue is precision. The work demanded
-            exactness. There was no room for error. Naive approaches failed in predictable ways:
+            and retrieval become unavoidable, but the bigger issue is that the work demanded exactness and as such minimizing error was essential. Naive approaches failed in predictable ways:
             partial extractions, duplicated or overwritten sections, tables losing structure, and the
             model confidently filling in gaps it shouldn’t. Once that starts happening, small errors
             compound quickly.
@@ -211,7 +210,7 @@ for chunk in retrieved_chunks:
           <p>
             The main takeaway for me was this: agents don’t usually fail because they can’t reason.
             They fail because we ask them to reason about things they shouldn’t have to. Reduce the
-            need for constant memory, reduce context bloat, and outputs get more stable.
+            need for constant memory, reduce context rot, and outputs get more stable.
           </p>
           <p>
             What this work surfaced for me is how wide this space actually is. Every time I felt
