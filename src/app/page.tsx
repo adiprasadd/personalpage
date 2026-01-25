@@ -157,6 +157,14 @@ export default function Home() {
       {activeTab === 'writing' && (
         <div className="content">
           <p>
+            <a href="/correctness"><strong>Building Agents Where Correctness is Critical</strong></a>
+            <br />
+            <span className="muted">
+              Notes on building deterministic agent systems at scale with gigabytes of data.
+            </span>
+          </p>
+
+          <p>
             <a href="/mgrep"><strong>Building with mgrep</strong></a>
             <br />
             <span className="muted">

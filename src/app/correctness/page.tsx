@@ -68,19 +68,20 @@ export default function Correctness() {
             as deterministic as possible while still letting the model run end to end.
           </p>
           <p>
-            One thing that took me a while to learn is that observability is non-negotiable. I don’t
-            enjoy reading long traces, but once you can see how an agent is stepping through a task,
-            where it hesitates, and where it goes off the rails, the problem gets clearer. Final
-            outputs tell you what failed. Traces tell you why.
+            Observability is non-negotiable. I don’t enjoy reading long traces, but once you can see
+            how an agent is stepping through a task, where it hesitates, and where it goes off the
+            rails, the problem gets clearer. Final outputs tell you what failed. Traces tell you why.
           </p>
           <p>
             Another thing that mattered more than I expected was the harness. By harness, I mean the
             fixed scaffolding around the model: the schema it must emit, the validation rules, and
             the deterministic steps that come after. The tools you give an agent cap what it can do,
-            and more importantly, what it can get wrong. A good harness doesn’t just help the model
-            succeed, it removes entire classes of failure. In hindsight, the best agents don’t
-            reason more. They reason less. The more structure you push into the system around the
-            model, the less judgment the model actually needs to exercise.
+            and more importantly, what it can get wrong. A good harness removes entire classes of
+            failure. In hindsight, the best agents don’t reason more. They reason less.
+          </p>
+          <p>
+            Part of this has sprouted from the rise of agent skills: distill instructions into
+            structured artifacts the model can reuse.
           </p>
           <p>
             Without that structure, the model breaks in ways that are hard to spot until it is too
@@ -140,11 +141,10 @@ for chunk in retrieved_chunks:
           </div>
           <p className="text-base text-gray-500">Deterministic intermediate structure.</p>
           <p>
-            Once I had a stable structure, the next step was to be ruthless about correctness. This
-            is where I stopped trusting the final output and started verifying the intermediate
-            record itself. The checks are intentionally boring: duplicates, missing summary, missing
-            citations, and obvious OCR noise. The boredom is the point. This is the part of the
-            pipeline that should never surprise you.
+            Once I had a stable structure, the next step was correctness. I stopped trusting the
+            final output and verified the intermediate record itself. The checks are intentionally
+            boring: duplicates, missing summary, missing citations, and obvious OCR noise. The
+            boredom is the point — this part of the pipeline should never surprise you.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -177,10 +177,9 @@ for chunk in retrieved_chunks:
             Verification pass (where correctness is enforced).
           </p>
           <p>
-            After that, rendering becomes a mechanical translation step. No judgments, no recovery,
-            no retries. It just walks the map in a fixed order and prints rows. That’s the point:
-            the model does the narrow extraction once, the verifier locks it down, and the renderer
-            stays intentionally boring so it never becomes a source of new errors.
+            After that, rendering is just translation. No judgments, no recovery, no retries. It
+            walks the map in a fixed order and prints rows. That’s the point: extract once, verify,
+            then keep the renderer intentionally boring so it never adds new errors.
           </p>
           <div className="my-6">
             <SyntaxHighlighter
@@ -212,20 +211,19 @@ for chunk in retrieved_chunks:
           <p>
             The main takeaway for me was this: agents don’t usually fail because they can’t reason.
             They fail because we ask them to reason about things they shouldn’t have to. Reduce the
-            need for constant memory, reduce context flooding, and the outputs get more stable.
+            need for constant memory, reduce context bloat, and outputs get more stable.
           </p>
           <p>
-            What this work really surfaced for me is how wide this space actually is. Every time I
-            felt like I understood one corner of it, another set of tradeoffs showed up. It’s hard
-            not to feel early here, in the best way. I’ve found myself increasingly drawn toward
-            modern research in this area, not because I think I have answers, but because the
-            learning curve itself is exciting. The next few months feel less like execution and more
-            like exploration, and that’s something I’m genuinely looking forward to.
+            What this work surfaced for me is how wide this space actually is. Every time I felt
+            like I understood one corner of it, another set of tradeoffs showed up. It’s hard not to
+            feel early here, in the best way. I’ve found myself increasingly drawn toward modern
+            research in this area, not because I think I have answers, but because the learning
+            curve itself is exciting. The next few months feel less like execution and more like
+            exploration, and that’s something I’m genuinely looking forward to.
           </p>
           <p className="text-gray-500">
-            On a side note, first time using Wispr Flow, wrote this in like 10 mins + 15 mins for
-            code snippets. Pretty sick. Please reach out for any feedback or suggestions, always
-            looking to learn more.
+            On a side note, first time using Wispr Flow — wrote this in ~10 mins + ~15 mins for
+            code snippets. Feel free to reach out and provide any feedback, happy to chat :)
           </p>
         </div>
       </article>
