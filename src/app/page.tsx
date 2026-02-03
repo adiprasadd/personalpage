@@ -44,7 +44,7 @@ export default function Home() {
       {activeTab === 'home' && (
         <div className="content">
           <p>
-            I'm a <a href="https://se-webring.xyz/" target="_blank" rel="noopener noreferrer">Software Engineering</a> student at the <strong>University of Waterloo</strong> interested in agents, LLM inference, and post-training.
+            I'm a <a href="https://se-webring.xyz/" target="_blank" rel="noopener noreferrer">Software Engineering</a> student at the <strong>University of Waterloo</strong> interested in agents, LLM inference, and RL post-training.
           </p>
           <p>
             At this point, I'm optimizing for learning and depth of understanding. I see the late teens and early twenties as a formative window that can strongly shape the trajectory of the rest of one's life. Because of that, I'm focused on gaining clarity around where I truly want to end up, and building the foundation to support that along the way.
